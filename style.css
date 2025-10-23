@@ -302,3 +302,7 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .af-border-pale-green,.af-hover-border-pale-green:hover{border-color:#e7ffe7!important}
 .af-border-pale-yellow,.af-hover-border-pale-yellow:hover{border-color:#ffffcc!important}
 .af-border-pale-blue,.af-hover-border-pale-blue:hover{border-color:#e7ffff!important}
+.af-hover-opacity,
+.af-hover-opacity:hover {
+	text-decoration: none;
+}
