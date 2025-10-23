@@ -43,7 +43,7 @@
             overflow: hidden;   /* s'assurer que le contenu est clipé */
             border-radius: 0;       /* full-bleed, pas d'arrondi externe */
             box-sizing: border-box;
-
+            box-shadow: 0 18px 42px rgba(0,0,0,0.22);
         }
         .slide-nav-left, .slide-nav-right {
             position: absolute;
@@ -126,11 +126,13 @@
             width: 100%;
             top: 0;
             left: 0;
+            height: 110%;
         }
         .mySlides.active {
             opacity: 1;
             pointer-events: auto;
             position: relative;
+            height: 110%;
         }
 
         /* Styles pour la carte Google Maps sous la section CONTACT */
@@ -340,6 +342,7 @@
             overflow: hidden;       /* clipper tout ce qui dépasse */
             padding-bottom: 0;
             margin-bottom: 0px;
+            box-shadow: 0 18px 42px rgba(0,0,0,0.22);
         }
         .slideshow-container img,
         .slideshow-container .mySlides img {
@@ -610,12 +613,24 @@
             <p><a href="#pricing" class="af-button af-white af-padding-large af-large af-margin-top af-opacity af-hover-opacity-off">Découvrir nos offres</a></p>
         </div>
         <div class="af-display-bottomright af-text-grey af-large" style="padding: 30px 48px">
-            <i class="fa fa-facebook-official af-hover-opacity"></i>
-            <i class="fa fa-instagram af-hover-opacity"></i>
-            <i class="fa fa-snapchat af-hover-opacity"></i>
-            <i class="fa fa-pinterest-p af-hover-opacity"></i>
-            <i class="fa fa-twitter af-hover-opacity"></i>
-            <i class="fa fa-linkedin af-hover-opacity"></i>
+            <a href="https://www.facebook.com" target="_blank" rel="noopener" class="af-hover-opacity" aria-label="Facebook">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener" class="af-hover-opacity" aria-label="Instagram">
+                <i class="fa fa-instagram"></i>
+            </a>
+            <a href="https://www.snapchat.com" target="_blank" rel="noopener" class="af-hover-opacity" aria-label="Snapchat">
+                <i class="fa fa-snapchat"></i>
+            </a>
+            <a href="https://www.pinterest.com" target="_blank" rel="noopener" class="af-hover-opacity" aria-label="Pinterest">
+                <i class="fa fa-pinterest-p"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener" class="af-hover-opacity" aria-label="Twitter">
+                <i class="fa fa-twitter"></i>
+            </a>
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener" class="af-hover-opacity" aria-label="LinkedIn">
+                <i class="fa fa-linkedin"></i>
+            </a>
         </div>
     </header>
 	
@@ -805,13 +820,28 @@
         <a href="#home" class="af-button af-light-grey">
             <i class="fa fa-arrow-up af-margin-right"></i>Tout en haut
         </a>
+        <div style="margin-top:24px;">
+                    <img src="images/badgeSSL.png" alt="Certification de sécurité SSL" style="max-width:100px;width:50%;height:auto;">
+        </div>
         <div class="af-xlarge af-section">
-            <i class="fa fa-facebook-official af-hover-opacity"></i>
-            <i class="fa fa-instagram af-hover-opacity"></i>
-            <i class="fa fa-snapchat af-hover-opacity"></i>
-            <i class="fa fa-pinterest-p af-hover-opacity"></i>
-            <i class="fa fa-twitter af-hover-opacity"></i>
-            <i class="fa fa-linkedin af-hover-opacity"></i>
+            <a href="https://www.facebook.com" target="_blank" rel="noopener" class="af-hover-opacity" aria-label="Facebook">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener" class="af-hover-opacity" aria-label="Instagram">
+                <i class="fa fa-instagram"></i>
+            </a>
+            <a href="https://www.snapchat.com" target="_blank" rel="noopener" class="af-hover-opacity" aria-label="Snapchat">
+                <i class="fa fa-snapchat"></i>
+            </a>
+            <a href="https://www.pinterest.com" target="_blank" rel="noopener" class="af-hover-opacity" aria-label="Pinterest">
+                <i class="fa fa-pinterest-p"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener" class="af-hover-opacity" aria-label="Twitter">
+                <i class="fa fa-twitter"></i>
+            </a>
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener" class="af-hover-opacity" aria-label="LinkedIn">
+                <i class="fa fa-linkedin"></i>
+            </a>
         </div>
         <p class="af-opacity">© 2025 Site-simple.ch — Tous droits réservés</p>
     </footer>
