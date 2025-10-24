@@ -22,11 +22,19 @@
     <style id="deferred-styles" media="print">
         /* Utiliser Montserrat partout */
         body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
-        body, html { height: 100%; line-height: 1.8; }
+        body, html {
+            height: 100%;
+            line-height: 1.8;
+            scroll-padding-top: 88px;
+        }
         .bgimg-1 {
             background-position: center;
             background-size: cover;
-            background-image: url("images/background.jpg");
+            background-image: url("images/background.jpg"); /* fallback */
+            background-image: image-set(
+                url("images/background.webp") type("image/webp") 1x,
+                url("images/background.png") type("image/png") 1x
+            );
             min-height: 100%;
         }
         .af-bar .af-button { padding: 16px; }
@@ -113,9 +121,16 @@
         .slideshow-container .text a:hover {
             text-decoration: underline;
         }
-        .af-top, .af-bar {
-            position: relative;
+        .af-top {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
+        }
+        .af-top .af-bar {
+            position: relative;
+            z-index: inherit;
         }
         /* Ajout effet fondu pour le slideshow */
         .mySlides {
@@ -258,11 +273,19 @@
             text-transform: none; /* garder la casse d'origine */
             display: inline-block;
         }
+        .hero-content {
+            padding: 48px;
+            padding-top: calc(48px + 68px);
+        }
         @media (max-width: 900px) {
             .hero-title { font-size: 2.6rem; }
         }
         @media (max-width: 600px) {
             .hero-title { font-size: 1.8rem; }
+            .hero-content {
+                padding: 32px;
+                padding-top: calc(32px + 60px);
+            }
         }
 
         /* Agrandir bouton ENVOYER : considérer icône+texte comme un seul bloc centré */
@@ -599,14 +622,15 @@
     <!-- Menu latéral pour mobile -->
     <nav class="af-sidebar af-bar-block af-black af-card af-animate-left af-hide-medium af-hide-large" style="display:none" id="mySidebar">
         <a href="javascript:void(0)" onclick="w3_close()" class="af-bar-item af-button af-large af-padding-16">Fermer ×</a>
-        <a href="#pricing" onclick="w3_close()" class="af-bar-item af-button">PRIX</a>
+        <a href="#home" onclick="w3_close()" class="af-bar-item af-button">ACCUEIL</a>
+        <a href="#pricing" onclick="w3_close()" class="af-bar-item af-button">TARIFS</a>
         <a href="#work" onclick="w3_close()" class="af-bar-item af-button">PORTFOLIO</a>
         <a href="#contact" onclick="w3_close()" class="af-bar-item af-button">CONTACT</a>
     </nav>
 
     <!-- En-tête -->
     <header class="bgimg-1 af-display-container af-grayscale-min" id="home">
-        <div class="af-display-left af-text-white" style="padding:48px">
+    <div class="af-display-left af-text-white hero-content">
             <span class="af-jumbo af-hide-small hero-title">Tout simplement.</span><br>
             <span class="af-xxlarge af-hide-large af-hide-medium hero-title">Tout simplement.</span><br>
             <span class="af-large">Votre site, sans tracas : on le crée, on le maintien. Vous profitez !</span>
@@ -720,10 +744,16 @@
                 </div>
 
 <div class="mySlides fade" data-caption="Essayer" data-link="https://samamuz.github.io/kebab-du-coin.io" data-target="_blank">
-    <img src="images/Slide1.png" style="width:100%" alt="Aperçu de réalisation de site web — diapositive 1">
+    <picture>
+        <source srcset="images/Slide1.webp" type="image/webp">
+        <img src="images/Slide1.jpg" width="1400" height="604" loading="eager" fetchpriority="high" alt="Aperçu de réalisation de site web — diapositive 1">
+    </picture>
 </div>
 <div class="mySlides fade" data-caption="Essayer" data-link="https://samamuz.github.io/elegance-coiffeur.io/" data-target="_blank">
-    <img src="images/Slide2.png" style="width:100%" alt="Aperçu de réalisation de site web — diapositive 2">
+    <picture>
+        <source srcset="images/Slide2.webp" type="image/webp">
+        <img src="images/Slide2.jpg" width="1400" height="606" loading="lazy" alt="Aperçu de réalisation de site web — diapositive 2">
+    </picture>
 </div>
 
     <!-- Single caption element positioned relative to the slideshow container -->
@@ -749,11 +779,12 @@
 
             <!-- Aperçu Google Map et panneau coordonnées -->
             <div class="map-row" aria-label="Carte et coordonnées - site-simple">
-                <div class="map-container" aria-hidden="false">
+        <div class="map-container" aria-hidden="false">
                     <iframe
                         id="gmap"
                         title="Localisation - site-simple (satellite)"
-                        src="https://www.google.com/maps?q=Rue+de+S%C3%A9beillon+12+1004+Lausanne&t=k&z=17&output=embed"
+            data-src="https://www.google.com/maps?q=Rue+de+S%C3%A9beillon+12+1004+Lausanne&t=k&z=17&output=embed"
+            srcdoc="<p style='font-family:Montserrat,sans-serif;text-align:center;padding:1.5rem;'><strong>Carte en cours de chargement…</strong><br><a href='https://www.google.com/maps?q=Rue+de+S%C3%A9beillon+12+1004+Lausanne&amp;t=k&amp;z=17' target='_blank' rel='noopener'>Ouvrir dans Google Maps</a></p>"
                         allowfullscreen
                         loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -766,7 +797,7 @@
         </a>
     </h4>
     <a href="https://www.google.com/maps?q=Rue+de+S%C3%A9beillon+12+1004+Lausanne&t=k&z=17" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">
-        site-simple.ch<br>Rue de Sébeillon 12<br>1004 Lausanne
+        site-simple.ch<br>Rue de Sainte-Beuve 6<br>1004 Lausanne
     </a></p>
 
                     <p><h4 style="margin-top:12px;">
@@ -777,11 +808,11 @@
     <a href="tel:+41797187865" style="color:inherit; text-decoration:none;">+41 79 718 78 65</a></p>
 
                     <p></p><h4 style="margin-top:12px;">
-		<a href="mailto:site-simple@gmail.com" style="color:inherit; text-decoration:none;">
+		<a href="mailto:contact@site-simple.ch" style="color:inherit; text-decoration:none;">
 			<i class="fa fa-envelope" aria-hidden="true"></i><b> E‑mail</b>
 		</a>
 	</h4>
-	<a href="mailto:site-simple@gmail.com" style="color:inherit; text-decoration:none;">site-simple@gmail.com</a></p>
+	<a href="mailto:contact@site-simple.ch" style="color:inherit; text-decoration:none;">contact@site-simple.ch</a></p>
                 </div>
             </div>
 
@@ -820,9 +851,16 @@
         <a href="#home" class="af-button af-light-grey">
             <i class="fa fa-arrow-up af-margin-right"></i>Tout en haut
         </a>
-        <div style="margin-top:24px;">
-                    <img src="images/badgeSSL.png" alt="Certification de sécurité SSL" style="max-width:100px;width:50%;height:auto;">
-        </div>
+    <div style="margin-top:24px; display:flex; justify-content:center; align-items:center; gap:2px;">
+            <picture>
+                <source srcset="images/badgeSwissMade.webp" type="image/webp">
+                <img src="images/badgeSwissMade.png" width="320" height="320" loading="lazy" alt="Label Swiss Made" style="max-width:200px;width:90%;height:auto;">
+            </picture>
+            <picture>
+                <source srcset="images/badgeSSL.webp" type="image/webp">
+                <img src="images/badgeSSL.png" width="320" height="320" loading="lazy" alt="Certification de sécurité SSL" style="max-width:150px;width:90%;height:auto;">
+            </picture>
+    </div>
         <div class="af-xlarge af-section">
             <a href="https://www.facebook.com" target="_blank" rel="noopener" class="af-hover-opacity" aria-label="Facebook">
                 <i class="fa fa-facebook-official"></i>
@@ -952,6 +990,41 @@
                     }
                 }, false);
             });
+        })();
+
+        // Déclenche le chargement de Google Maps uniquement quand nécessaire
+        (function deferMapLoad(){
+            const iframe = document.getElementById('gmap');
+            if (!iframe) return;
+            const mapSrc = iframe.dataset ? iframe.dataset.src : null;
+            if (!mapSrc) return;
+
+            const loadMap = function(){
+                if (iframe.src === mapSrc) return;
+                iframe.src = mapSrc;
+                iframe.removeAttribute('srcdoc');
+            };
+
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver(function(entries){
+                    entries.forEach(function(entry){
+                        if (entry.isIntersecting) {
+                            loadMap();
+                            observer.disconnect();
+                        }
+                    });
+                }, { rootMargin: '200px 0px' });
+                observer.observe(iframe);
+            } else {
+                window.addEventListener('load', loadMap, { once: true });
+                window.addEventListener('scroll', function onScroll(){
+                    loadMap();
+                    window.removeEventListener('scroll', onScroll);
+                });
+            }
+
+            iframe.addEventListener('focus', loadMap, { once: true });
+            iframe.addEventListener('click', loadMap, { once: true });
         })();
 
         // Slideshow JS
