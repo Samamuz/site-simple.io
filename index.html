@@ -132,6 +132,11 @@
             position: relative;
             z-index: inherit;
         }
+        /* S'assurer que le menu latéral mobile reste au-dessus du slideshow */
+        #mySidebar {
+            position: fixed;
+            z-index: 2000;
+        }
         /* Ajout effet fondu pour le slideshow */
         .mySlides {
             opacity: 0;
