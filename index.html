@@ -21,6 +21,7 @@
     <meta name="twitter:description" content="Votre site, sans tracas : on le crée, on le maintient. Vous profitez !">
     <meta name="twitter:image" content="images/background.jpg">
     <meta name="twitter:image:alt" content="site-simple.ch - Tout simplement">
+    
     <!-- Preload / préconnect pour accélérer le rendu -->
     <link rel="preload" href="style.css" as="style" onload="this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="style.css"></noscript>
@@ -34,21 +35,23 @@
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" as="style" onload="this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></noscript>
 
-    <!-- Favicon principal -->
-    <link rel="icon" href="favicon/favicon.ico">
+    <!-- Favicon principal pour navigateurs classiques -->
     <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
-
-    <!-- .ico pour vieux navigateurs -->
     <link rel="shortcut icon" href="favicon/favicon.ico">
 
-    <!-- Apple touch -->
+    <!-- Optionnel : SVG pour navigateurs modernes (mais Google ne l’affiche pas forcément dans les SERP) -->
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+
+    <!-- Favicon pour appareils Apple -->
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
 
-    <!-- Web app / Android -->
+    <!-- Manifest pour PWA -->
     <link rel="manifest" href="favicon/site.webmanifest">
 
-    <!-- Optionnel SVG -->
-    <link rel="icon" href="favicon/favicon.svg" type="image/svg+xml">
+    <!-- Icônes additionnelles pour Android (PWA) -->
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon/web-app-manifest-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon/web-app-manifest-512x512.png">
+
 
     <!-- Longue feuille de styles inline : différée pour réduire le blocage initial -->
     <style id="deferred-styles" media="print">
@@ -163,6 +166,43 @@
         .af-top .af-bar {
             position: relative;
             z-index: inherit;
+        }
+        /* Séparer le menu du header : réserver un espace sous la barre fixe
+           et permettre au header d'occuper l'espace derrière la barre fixe. */
+        :root {
+            --menu-height: 76px;
+        }
+        @media (max-width: 600px) {
+            :root { --menu-height: 64px; }
+        }
+
+        .af-top { box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+        /* Garde un espace pour le menu fixe pour le reste du document */
+        body { padding-top: var(--menu-height); }
+
+        /* Le header doit s'étendre derrière la barre fixe et occuper toute la hauteur
+           visible (viewport). On remonte le header de la hauteur du menu et on ajoute
+           un padding-top identique afin que son contenu ne soit pas caché par la barre. */
+        header.bgimg-1, header#home {
+            margin-top: calc(-1 * var(--menu-height));
+            padding-top: var(--menu-height);
+            min-height: calc(100vh + var(--menu-height));
+            box-sizing: border-box;
+            position: relative;
+            z-index: 0; /* la barre fixe (.af-top) a z-index:1000 */
+            background-position: center;
+            background-size: cover;
+        }
+        /* Icônes : menu en noir, icônes sociales en blanc */
+        /* Icônes dans la barre de navigation (menu) */
+        .af-top .af-bar .fa {
+            color: #000 !important;
+            fill: #000 !important;
+        }
+        /* Icônes sociales dans l'en-tête (fond du header) */
+        header .af-display-bottomright .fa {
+            color: #fff !important;
+            fill: #fff !important;
         }
         /* S'assurer que le menu latéral mobile reste au-dessus du slideshow */
         #mySidebar {
@@ -669,7 +709,6 @@
     <header class="bgimg-1 af-display-container af-grayscale-min" id="home">
     <div class="af-display-left af-text-white hero-content">
             <span class="af-jumbo af-hide-small hero-title">Tout simplement.</span><br>
-            <span class="af-xxlarge af-hide-large af-hide-medium hero-title">Tout simplement.</span><br>
             <span class="af-large">Votre site, sans tracas : on le crée, on le maintien. Vous profitez !</span>
             <p><a href="#pricing" class="af-button af-white af-padding-large af-large af-margin-top af-opacity af-hover-opacity-off">Découvrir nos offres</a></p>
         </div>
